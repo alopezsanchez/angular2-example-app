@@ -1,0 +1,27 @@
+<main>
+  <article>
+    <blockquote>
+      <p><em>List of packages</em></p>
+    </blockquote>
+    <div class="row container">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Scope</th>
+            <th>Repository</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let package of registeredPackages$ | async">
+            <td>{{ package.date | date }}</td>
+            <td>{{ package.name }}</td>
+            <td>{{ package.type }}</td>
+            <td>{{ package.category}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</main>

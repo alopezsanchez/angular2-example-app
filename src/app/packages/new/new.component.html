@@ -1,0 +1,49 @@
+<main>
+  <!-- * directivas estructurales-->
+  <form>
+    <!--banana in a box, lectura y escritura-->
+    <div class="row">
+      <label for="date" class="column">Date: </label>
+      <input type="date" [ngModel]="package.date | date:'y-MM-dd'" (ngModelChange)="package.date = $event" name="date" class="column">
+    </div>
+    <div class="row">
+      <label for="name" class="column">Name:</label>
+      <input type="text" name="name" [(ngModel)]="package.name" class="column">
+    </div>
+    <div class="row">
+      <label for="scope" class="column">Scope:</label>
+      <div *ngFor="let type of scopeTypes" class="column">
+        <!--evento de cambio del modelo-->
+        <input type="radio" name="type" [value]="type.id" [(ngModel)]="package.type" (ngModelChange)="onChangeType()">
+        <!--interpolación del atributo class -->
+        <span class="{{type.text | lowercase}}">{{ type.text }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <label for="category" class="column">Category: </label>
+      <!--las opciones se cargan con *ngFor-->
+      <select [disabled]="categories.length === 0" name="category" [(ngModel)]="package.category" class="column">
+        <option 
+            *ngFor="let category of categories"
+            [value]="category.id"> 
+            {{category.text}} 
+        </option>
+      </select>
+    </div>
+    <div class="row">
+      <label class="column" for="registered">Register package</label>
+      <input class="column" type="checkbox" name="registered" [(ngModel)]="package.registered">
+    </div>
+    <div class="row">
+      <button (click)="onSavePackage()">Save package</button>
+    </div>
+  </form>
+
+  <aside class="container">
+    <em class="row">Package in progress: </em>
+    <code class="row">
+      <!--visión de un objeto con el pipe json-->
+      <strong>{{ package | json }}</strong>
+    </code>
+  </aside>
+</main>

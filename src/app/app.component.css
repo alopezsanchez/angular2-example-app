@@ -1,0 +1,7 @@
+md-toolbar {
+    background: #9b4dca;
+}
+
+button[md-icon-button]:hover {
+    background: #9b4dca;
+}
